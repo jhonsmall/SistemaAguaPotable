@@ -1,6 +1,5 @@
 package devs.team.net.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -60,9 +59,11 @@ public class LecturaMedidor implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @OneToMany(mappedBy = "lecturaMedidor")
-    @JsonIgnore
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "lectura_medidor_lecturamedidor_recibo",
+               joinColumns = @JoinColumn(name="lectura_medidors_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="lecturamedidor_recibos_id", referencedColumnName="id"))
     private Set<Recibo> lecturamedidorRecibos = new HashSet<>();
 
     @ManyToOne
@@ -179,13 +180,13 @@ public class LecturaMedidor implements Serializable {
 
     public LecturaMedidor addLecturamedidorRecibo(Recibo recibo) {
         this.lecturamedidorRecibos.add(recibo);
-        recibo.setLecturaMedidor(this);
+        recibo.getLecturaMedidors().add(this);
         return this;
     }
 
     public LecturaMedidor removeLecturamedidorRecibo(Recibo recibo) {
         this.lecturamedidorRecibos.remove(recibo);
-        recibo.setLecturaMedidor(null);
+        recibo.getLecturaMedidors().remove(this);
         return this;
     }
 

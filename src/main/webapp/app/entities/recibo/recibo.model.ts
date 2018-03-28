@@ -18,7 +18,7 @@ export class Recibo implements BaseEntity {
         public anio?: number,
         public mes?: number,
         public usuarioId?: number,
-        public lecturaMedidorId?: number,
+        public lecturaMedidors?: BaseEntity[],
     ) {
     }
 }

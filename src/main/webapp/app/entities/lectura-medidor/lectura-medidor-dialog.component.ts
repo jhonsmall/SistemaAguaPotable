@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { LecturaMedidor } from './lectura-medidor.model';
 import { LecturaMedidorPopupService } from './lectura-medidor-popup.service';
 import { LecturaMedidorService } from './lectura-medidor.service';
+import { Recibo, ReciboService } from '../recibo';
 import { Medidor, MedidorService } from '../medidor';
 
 @Component({
@@ -20,12 +21,15 @@ export class LecturaMedidorDialogComponent implements OnInit {
     lecturaMedidor: LecturaMedidor;
     isSaving: boolean;
 
+    recibos: Recibo[];
+
     medidors: Medidor[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private lecturaMedidorService: LecturaMedidorService,
+        private reciboService: ReciboService,
         private medidorService: MedidorService,
         private eventManager: JhiEventManager
     ) {
@@ -33,6 +37,8 @@ export class LecturaMedidorDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.reciboService.query()
+            .subscribe((res: HttpResponse<Recibo[]>) => { this.recibos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.medidorService.query()
             .subscribe((res: HttpResponse<Medidor[]>) => { this.medidors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -71,8 +77,23 @@ export class LecturaMedidorDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
+    trackReciboById(index: number, item: Recibo) {
+        return item.id;
+    }
+
     trackMedidorById(index: number, item: Medidor) {
         return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
 

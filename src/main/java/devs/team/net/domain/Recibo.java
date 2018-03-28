@@ -1,5 +1,6 @@
 package devs.team.net.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,6 +11,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import devs.team.net.domain.enumeration.Estado;
@@ -70,8 +73,10 @@ public class Recibo implements Serializable {
     @ManyToOne
     private Usuario usuario;
 
-    @ManyToOne
-    private LecturaMedidor lecturaMedidor;
+    @ManyToMany(mappedBy = "lecturamedidorRecibos")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<LecturaMedidor> lecturaMedidors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -212,17 +217,29 @@ public class Recibo implements Serializable {
         this.usuario = usuario;
     }
 
-    public LecturaMedidor getLecturaMedidor() {
-        return lecturaMedidor;
+    public Set<LecturaMedidor> getLecturaMedidors() {
+        return lecturaMedidors;
     }
 
-    public Recibo lecturaMedidor(LecturaMedidor lecturaMedidor) {
-        this.lecturaMedidor = lecturaMedidor;
+    public Recibo lecturaMedidors(Set<LecturaMedidor> lecturaMedidors) {
+        this.lecturaMedidors = lecturaMedidors;
         return this;
     }
 
-    public void setLecturaMedidor(LecturaMedidor lecturaMedidor) {
-        this.lecturaMedidor = lecturaMedidor;
+    public Recibo addLecturaMedidor(LecturaMedidor lecturaMedidor) {
+        this.lecturaMedidors.add(lecturaMedidor);
+        lecturaMedidor.getLecturamedidorRecibos().add(this);
+        return this;
+    }
+
+    public Recibo removeLecturaMedidor(LecturaMedidor lecturaMedidor) {
+        this.lecturaMedidors.remove(lecturaMedidor);
+        lecturaMedidor.getLecturamedidorRecibos().remove(this);
+        return this;
+    }
+
+    public void setLecturaMedidors(Set<LecturaMedidor> lecturaMedidors) {
+        this.lecturaMedidors = lecturaMedidors;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
