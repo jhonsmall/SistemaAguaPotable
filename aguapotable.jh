@@ -105,8 +105,8 @@ relationship OneToMany {
     Costo{costoCostoMedidor} to CostoMedidor{costo},
     Sector{sectorCosto} to Costo{sector},
     Clasificacion{clasificacionCosto} to Costo{clasificacion},
-    Medidor{medidorCostoMedidor} to CostoMedidor{medidor},
-    LecturaMedidor{lecturamedidorRecibo} to Recibo{lecturaMedidor}
+    Medidor{medidorCostoMedidor} to CostoMedidor{medidor}
+    // LecturaMedidor{lecturamedidorRecibo} to Recibo{lecturaMedidor}
 }
 
 relationship OneToMany {
@@ -118,6 +118,10 @@ relationship OneToMany {
 
 relationship OneToMany {
     Clasificacion{clasificacionMedidor} to Medidor{clasificacion}
+}
+
+relationship ManyToMany {
+	LecturaMedidor{lecturamedidorRecibo} to Recibo{lecturaMedidor}
 }
 
 // Set pagination options
