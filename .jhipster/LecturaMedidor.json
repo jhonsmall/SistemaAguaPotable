@@ -2,10 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "lecturaMedidor",
             "relationshipName": "lecturamedidorRecibo",
             "otherEntityName": "recibo",
-            "otherEntityRelationshipName": "lecturaMedidor"
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",

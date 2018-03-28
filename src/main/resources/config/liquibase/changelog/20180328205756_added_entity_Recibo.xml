@@ -61,10 +61,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="lectura_medidor_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="recibo" columnName="fechagenera" columnDataType="datetime"/>

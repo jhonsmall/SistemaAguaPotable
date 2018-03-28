@@ -67,6 +67,7 @@ public class CacheConfiguration {
             cm.createCache(devs.team.net.domain.LecturaMedidor.class.getName(), jcacheConfiguration);
             cm.createCache(devs.team.net.domain.LecturaMedidor.class.getName() + ".lecturamedidorRecibos", jcacheConfiguration);
             cm.createCache(devs.team.net.domain.Recibo.class.getName(), jcacheConfiguration);
+            cm.createCache(devs.team.net.domain.Recibo.class.getName() + ".lecturaMedidors", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
