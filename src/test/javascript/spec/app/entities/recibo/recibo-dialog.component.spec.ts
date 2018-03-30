@@ -9,8 +9,8 @@ import { SistemaAguaPotableTestModule } from '../../../test.module';
 import { ReciboDialogComponent } from '../../../../../../main/webapp/app/entities/recibo/recibo-dialog.component';
 import { ReciboService } from '../../../../../../main/webapp/app/entities/recibo/recibo.service';
 import { Recibo } from '../../../../../../main/webapp/app/entities/recibo/recibo.model';
-import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 import { LecturaMedidorService } from '../../../../../../main/webapp/app/entities/lectura-medidor';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 
 describe('Component Tests', () => {
 
@@ -26,8 +26,8 @@ describe('Component Tests', () => {
                 imports: [SistemaAguaPotableTestModule],
                 declarations: [ReciboDialogComponent],
                 providers: [
-                    UsuarioService,
                     LecturaMedidorService,
+                    UsuarioService,
                     ReciboService
                 ]
             })

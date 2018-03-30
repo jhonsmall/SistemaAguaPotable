@@ -1,5 +1,6 @@
 package devs.team.net.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -59,15 +60,13 @@ public class LecturaMedidor implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "lectura_medidor_lecturamedidor_recibo",
-               joinColumns = @JoinColumn(name="lectura_medidors_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="lecturamedidor_recibos_id", referencedColumnName="id"))
-    private Set<Recibo> lecturamedidorRecibos = new HashSet<>();
-
     @ManyToOne
     private Medidor medidor;
+
+    @ManyToMany(mappedBy = "lecturaMedidors")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Recibo> lecturamedidorRecibos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -169,6 +168,19 @@ public class LecturaMedidor implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public Medidor getMedidor() {
+        return medidor;
+    }
+
+    public LecturaMedidor medidor(Medidor medidor) {
+        this.medidor = medidor;
+        return this;
+    }
+
+    public void setMedidor(Medidor medidor) {
+        this.medidor = medidor;
+    }
+
     public Set<Recibo> getLecturamedidorRecibos() {
         return lecturamedidorRecibos;
     }
@@ -192,19 +204,6 @@ public class LecturaMedidor implements Serializable {
 
     public void setLecturamedidorRecibos(Set<Recibo> recibos) {
         this.lecturamedidorRecibos = recibos;
-    }
-
-    public Medidor getMedidor() {
-        return medidor;
-    }
-
-    public LecturaMedidor medidor(Medidor medidor) {
-        this.medidor = medidor;
-        return this;
-    }
-
-    public void setMedidor(Medidor medidor) {
-        this.medidor = medidor;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

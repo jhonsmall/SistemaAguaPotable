@@ -2,17 +2,18 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "lecturamedidorRecibo",
+            "relationshipName": "lecturaMedidor",
+            "otherEntityName": "lecturaMedidor",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "usuario",
             "otherEntityName": "usuario",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "relationshipName": "lecturaMedidor",
-            "otherEntityName": "lecturaMedidor",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "lecturamedidorRecibo"
         }
     ],
     "fields": [

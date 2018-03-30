@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Recibo } from './recibo.model';
 import { ReciboPopupService } from './recibo-popup.service';
 import { ReciboService } from './recibo.service';
-import { Usuario, UsuarioService } from '../usuario';
 import { LecturaMedidor, LecturaMedidorService } from '../lectura-medidor';
+import { Usuario, UsuarioService } from '../usuario';
 
 @Component({
     selector: 'jhi-recibo-dialog',
@@ -21,26 +21,26 @@ export class ReciboDialogComponent implements OnInit {
     recibo: Recibo;
     isSaving: boolean;
 
-    usuarios: Usuario[];
-
     lecturamedidors: LecturaMedidor[];
+
+    usuarios: Usuario[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private reciboService: ReciboService,
-        private usuarioService: UsuarioService,
         private lecturaMedidorService: LecturaMedidorService,
+        private usuarioService: UsuarioService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.usuarioService.query()
-            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.lecturaMedidorService.query()
             .subscribe((res: HttpResponse<LecturaMedidor[]>) => { this.lecturamedidors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -77,11 +77,11 @@ export class ReciboDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackUsuarioById(index: number, item: Usuario) {
+    trackLecturaMedidorById(index: number, item: LecturaMedidor) {
         return item.id;
     }
 
-    trackLecturaMedidorById(index: number, item: LecturaMedidor) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 
