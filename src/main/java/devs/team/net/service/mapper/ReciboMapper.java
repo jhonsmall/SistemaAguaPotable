@@ -8,14 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Recibo and its DTO ReciboDTO.
  */
-@Mapper(componentModel = "spring", uses = {UsuarioMapper.class})
+@Mapper(componentModel = "spring", uses = {LecturaMedidorMapper.class, UsuarioMapper.class})
 public interface ReciboMapper extends EntityMapper<ReciboDTO, Recibo> {
 
     @Mapping(source = "usuario.id", target = "usuarioId")
     ReciboDTO toDto(Recibo recibo);
 
     @Mapping(source = "usuarioId", target = "usuario")
-    @Mapping(target = "lecturaMedidors", ignore = true)
     Recibo toEntity(ReciboDTO reciboDTO);
 
     default Recibo fromId(Long id) {

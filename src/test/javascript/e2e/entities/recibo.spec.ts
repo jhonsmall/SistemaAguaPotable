@@ -50,6 +50,7 @@ describe('Recibo e2e test', () => {
         expect(reciboDialogPage.getAnioInput()).toMatch('5');
         reciboDialogPage.setMesInput('5');
         expect(reciboDialogPage.getMesInput()).toMatch('5');
+        // reciboDialogPage.lecturaMedidorSelectLastOption();
         reciboDialogPage.usuarioSelectLastOption();
         reciboDialogPage.save();
         expect(reciboDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -86,6 +87,7 @@ export class ReciboDialogPage {
     fechapagaInput = element(by.css('input#field_fechapaga'));
     anioInput = element(by.css('input#field_anio'));
     mesInput = element(by.css('input#field_mes'));
+    lecturaMedidorSelect = element(by.css('select#field_lecturaMedidor'));
     usuarioSelect = element(by.css('select#field_usuario'));
 
     getModalTitle() {
@@ -165,6 +167,22 @@ export class ReciboDialogPage {
 
     getMesInput = function() {
         return this.mesInput.getAttribute('value');
+    };
+
+    lecturaMedidorSelectLastOption = function() {
+        this.lecturaMedidorSelect.all(by.tagName('option')).last().click();
+    };
+
+    lecturaMedidorSelectOption = function(option) {
+        this.lecturaMedidorSelect.sendKeys(option);
+    };
+
+    getLecturaMedidorSelect = function() {
+        return this.lecturaMedidorSelect;
+    };
+
+    getLecturaMedidorSelectedOption = function() {
+        return this.lecturaMedidorSelect.element(by.css('option:checked')).getText();
     };
 
     usuarioSelectLastOption = function() {

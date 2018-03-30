@@ -109,12 +109,6 @@
         </div>
 
         <div class="form-group">
-            <label for="field_lecturamedidorRecibo">Lecturamedidor Recibo</label>
-            <select class="form-control" id="field_lecturamedidorRecibo" multiple name="lecturamedidorRecibo" [(ngModel)]="lecturaMedidor.lecturamedidorRecibos">
-                <option [ngValue]="getSelected(lecturaMedidor.lecturamedidorRecibos, reciboOption)" *ngFor="let reciboOption of recibos; trackBy: trackReciboById">{{reciboOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_medidor">Medidor</label>
             <select class="form-control" id="field_medidor" name="medidor" [(ngModel)]="lecturaMedidor.medidorId" >
                 <option [ngValue]="null"></option>

@@ -8,17 +8,6 @@
     -->
     <changeSet id="20180328205755-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="lectura_medidors_id"
-                                 baseTableName="lectura_medidor_lecturamedidor_recibo"
-                                 constraintName="fk_lectura_medidor_lecturamedidor_recibo_lectura_medidors_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="lectura_medidor"/>
-        <addForeignKeyConstraint baseColumnNames="lecturamedidor_recibos_id"
-                                 baseTableName="lectura_medidor_lecturamedidor_recibo"
-                                 constraintName="fk_lectura_medidor_lecturamedidor_recibo_lecturamedidor_recibos_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="recibo"/>
-        
         <addForeignKeyConstraint baseColumnNames="medidor_id"
                                  baseTableName="lectura_medidor"
                                  constraintName="fk_lectura_medidor_medidor_id"

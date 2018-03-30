@@ -77,7 +77,7 @@ public class LecturaMedidorServiceImpl implements LecturaMedidorService {
     @Transactional(readOnly = true)
     public LecturaMedidorDTO findOne(Long id) {
         log.debug("Request to get LecturaMedidor : {}", id);
-        LecturaMedidor lecturaMedidor = lecturaMedidorRepository.findOneWithEagerRelationships(id);
+        LecturaMedidor lecturaMedidor = lecturaMedidorRepository.findOne(id);
         return lecturaMedidorMapper.toDto(lecturaMedidor);
     }
 

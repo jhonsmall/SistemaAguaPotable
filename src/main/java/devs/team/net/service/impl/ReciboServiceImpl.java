@@ -77,7 +77,7 @@ public class ReciboServiceImpl implements ReciboService {
     @Transactional(readOnly = true)
     public ReciboDTO findOne(Long id) {
         log.debug("Request to get Recibo : {}", id);
-        Recibo recibo = reciboRepository.findOne(id);
+        Recibo recibo = reciboRepository.findOneWithEagerRelationships(id);
         return reciboMapper.toDto(recibo);
     }
 

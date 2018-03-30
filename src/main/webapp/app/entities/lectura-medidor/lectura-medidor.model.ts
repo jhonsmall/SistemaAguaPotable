@@ -15,8 +15,8 @@ export class LecturaMedidor implements BaseEntity {
         public anio?: number,
         public mes?: number,
         public descripcion?: string,
-        public lecturamedidorRecibos?: BaseEntity[],
         public medidorId?: number,
+        public lecturamedidorRecibos?: BaseEntity[],
     ) {
     }
 }
