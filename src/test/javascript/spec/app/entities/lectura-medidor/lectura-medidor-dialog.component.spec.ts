@@ -9,8 +9,8 @@ import { SistemaAguaPotableTestModule } from '../../../test.module';
 import { LecturaMedidorDialogComponent } from '../../../../../../main/webapp/app/entities/lectura-medidor/lectura-medidor-dialog.component';
 import { LecturaMedidorService } from '../../../../../../main/webapp/app/entities/lectura-medidor/lectura-medidor.service';
 import { LecturaMedidor } from '../../../../../../main/webapp/app/entities/lectura-medidor/lectura-medidor.model';
-import { MedidorService } from '../../../../../../main/webapp/app/entities/medidor';
 import { ReciboService } from '../../../../../../main/webapp/app/entities/recibo';
+import { MedidorService } from '../../../../../../main/webapp/app/entities/medidor';
 
 describe('Component Tests', () => {
 
@@ -26,8 +26,8 @@ describe('Component Tests', () => {
                 imports: [SistemaAguaPotableTestModule],
                 declarations: [LecturaMedidorDialogComponent],
                 providers: [
-                    MedidorService,
                     ReciboService,
+                    MedidorService,
                     LecturaMedidorService
                 ]
             })

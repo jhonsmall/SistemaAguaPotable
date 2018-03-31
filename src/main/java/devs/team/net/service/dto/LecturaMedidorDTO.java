@@ -36,6 +36,8 @@ public class LecturaMedidorDTO implements Serializable {
 
     private String descripcion;
 
+    private Set<ReciboDTO> lecturamedidorRecibos = new HashSet<>();
+
     private Long medidorId;
 
     public Long getId() {
@@ -100,6 +102,14 @@ public class LecturaMedidorDTO implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Set<ReciboDTO> getLecturamedidorRecibos() {
+        return lecturamedidorRecibos;
+    }
+
+    public void setLecturamedidorRecibos(Set<ReciboDTO> recibos) {
+        this.lecturamedidorRecibos = recibos;
     }
 
     public Long getMedidorId() {

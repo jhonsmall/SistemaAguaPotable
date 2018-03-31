@@ -121,7 +121,7 @@ relationship OneToMany {
 }
 
 relationship ManyToMany {
-	 Recibo{lecturaMedidor} to LecturaMedidor{lecturamedidorRecibo}
+	 LecturaMedidor{lecturamedidorRecibo} to Recibo{lecturaMedidor}
 }
 
 // Set pagination options

@@ -40,12 +40,6 @@
         <dd>
             <span>{{recibo.mes}}</span>
         </dd>
-        <dt><span>Lectura Medidor</span></dt>
-        <dd>
-            <span *ngFor="let lecturaMedidor of recibo.lecturaMedidors; let last = last">
-                <a [routerLink]="['/lectura-medidor', lecturaMedidor?.id ]">{{lecturaMedidor.id}}</a>{{last ? '' : ', '}}
-            </span>
-        </dd>
         <dt><span>Usuario</span></dt>
         <dd>
             <div *ngIf="recibo.usuarioId">

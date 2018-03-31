@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { LecturaMedidor } from './lectura-medidor.model';
 import { LecturaMedidorPopupService } from './lectura-medidor-popup.service';
 import { LecturaMedidorService } from './lectura-medidor.service';
-import { Medidor, MedidorService } from '../medidor';
 import { Recibo, ReciboService } from '../recibo';
+import { Medidor, MedidorService } from '../medidor';
 
 @Component({
     selector: 'jhi-lectura-medidor-dialog',
@@ -21,26 +21,26 @@ export class LecturaMedidorDialogComponent implements OnInit {
     lecturaMedidor: LecturaMedidor;
     isSaving: boolean;
 
-    medidors: Medidor[];
-
     recibos: Recibo[];
+
+    medidors: Medidor[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private lecturaMedidorService: LecturaMedidorService,
-        private medidorService: MedidorService,
         private reciboService: ReciboService,
+        private medidorService: MedidorService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.medidorService.query()
-            .subscribe((res: HttpResponse<Medidor[]>) => { this.medidors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.reciboService.query()
             .subscribe((res: HttpResponse<Recibo[]>) => { this.recibos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.medidorService.query()
+            .subscribe((res: HttpResponse<Medidor[]>) => { this.medidors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -77,11 +77,11 @@ export class LecturaMedidorDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackMedidorById(index: number, item: Medidor) {
+    trackReciboById(index: number, item: Recibo) {
         return item.id;
     }
 
-    trackReciboById(index: number, item: Recibo) {
+    trackMedidorById(index: number, item: Medidor) {
         return item.id;
     }
 
