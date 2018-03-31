@@ -44,8 +44,6 @@ public class ReciboDTO implements Serializable {
     @NotNull
     private Integer mes;
 
-    private Set<LecturaMedidorDTO> lecturaMedidors = new HashSet<>();
-
     private Long usuarioId;
 
     public Long getId() {
@@ -126,14 +124,6 @@ public class ReciboDTO implements Serializable {
 
     public void setMes(Integer mes) {
         this.mes = mes;
-    }
-
-    public Set<LecturaMedidorDTO> getLecturaMedidors() {
-        return lecturaMedidors;
-    }
-
-    public void setLecturaMedidors(Set<LecturaMedidorDTO> lecturaMedidors) {
-        this.lecturaMedidors = lecturaMedidors;
     }
 
     public Long getUsuarioId() {

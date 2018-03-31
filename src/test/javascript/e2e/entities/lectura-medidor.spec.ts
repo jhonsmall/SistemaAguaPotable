@@ -46,6 +46,7 @@ describe('LecturaMedidor e2e test', () => {
         expect(lecturaMedidorDialogPage.getMesInput()).toMatch('5');
         lecturaMedidorDialogPage.setDescripcionInput('descripcion');
         expect(lecturaMedidorDialogPage.getDescripcionInput()).toMatch('descripcion');
+        // lecturaMedidorDialogPage.lecturamedidorReciboSelectLastOption();
         lecturaMedidorDialogPage.medidorSelectLastOption();
         lecturaMedidorDialogPage.save();
         expect(lecturaMedidorDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -80,6 +81,7 @@ export class LecturaMedidorDialogPage {
     anioInput = element(by.css('input#field_anio'));
     mesInput = element(by.css('input#field_mes'));
     descripcionInput = element(by.css('input#field_descripcion'));
+    lecturamedidorReciboSelect = element(by.css('select#field_lecturamedidorRecibo'));
     medidorSelect = element(by.css('select#field_medidor'));
 
     getModalTitle() {
@@ -143,6 +145,22 @@ export class LecturaMedidorDialogPage {
 
     getDescripcionInput = function() {
         return this.descripcionInput.getAttribute('value');
+    };
+
+    lecturamedidorReciboSelectLastOption = function() {
+        this.lecturamedidorReciboSelect.all(by.tagName('option')).last().click();
+    };
+
+    lecturamedidorReciboSelectOption = function(option) {
+        this.lecturamedidorReciboSelect.sendKeys(option);
+    };
+
+    getLecturamedidorReciboSelect = function() {
+        return this.lecturamedidorReciboSelect;
+    };
+
+    getLecturamedidorReciboSelectedOption = function() {
+        return this.lecturamedidorReciboSelect.element(by.css('option:checked')).getText();
     };
 
     medidorSelectLastOption = function() {

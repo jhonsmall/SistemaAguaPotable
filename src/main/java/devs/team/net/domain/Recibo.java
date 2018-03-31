@@ -1,5 +1,6 @@
 package devs.team.net.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -69,15 +70,13 @@ public class Recibo implements Serializable {
     @Column(name = "mes", nullable = false)
     private Integer mes;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "recibo_lectura_medidor",
-               joinColumns = @JoinColumn(name="recibos_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="lectura_medidors_id", referencedColumnName="id"))
-    private Set<LecturaMedidor> lecturaMedidors = new HashSet<>();
-
     @ManyToOne
     private Usuario usuario;
+
+    @ManyToMany(mappedBy = "lecturamedidorRecibos")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<LecturaMedidor> lecturaMedidors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -205,6 +204,19 @@ public class Recibo implements Serializable {
         this.mes = mes;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Recibo usuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Set<LecturaMedidor> getLecturaMedidors() {
         return lecturaMedidors;
     }
@@ -228,19 +240,6 @@ public class Recibo implements Serializable {
 
     public void setLecturaMedidors(Set<LecturaMedidor> lecturaMedidors) {
         this.lecturaMedidors = lecturaMedidors;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public Recibo usuario(Usuario usuario) {
-        this.usuario = usuario;
-        return this;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

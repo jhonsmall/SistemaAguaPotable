@@ -32,6 +32,12 @@
         <dd>
             <span>{{lecturaMedidor.descripcion}}</span>
         </dd>
+        <dt><span>Lecturamedidor Recibo</span></dt>
+        <dd>
+            <span *ngFor="let lecturamedidorRecibo of lecturaMedidor.lecturamedidorRecibos; let last = last">
+                <a [routerLink]="['/recibo', lecturamedidorRecibo?.id ]">{{lecturamedidorRecibo.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
         <dt><span>Medidor</span></dt>
         <dd>
             <div *ngIf="lecturaMedidor.medidorId">

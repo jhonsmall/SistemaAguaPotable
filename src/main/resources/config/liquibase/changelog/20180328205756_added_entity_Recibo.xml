@@ -66,17 +66,6 @@
         <dropDefaultValue tableName="recibo" columnName="fechagenera" columnDataType="datetime"/>
         <dropDefaultValue tableName="recibo" columnName="fechapaga" columnDataType="datetime"/>
         
-        <createTable tableName="recibo_lectura_medidor">
-            <column name="lectura_medidors_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="recibos_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="recibos_id, lectura_medidors_id" tableName="recibo_lectura_medidor"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
